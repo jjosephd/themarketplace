@@ -12,8 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
+import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 
 const SignIn = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
+
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>Sign In</h1>
