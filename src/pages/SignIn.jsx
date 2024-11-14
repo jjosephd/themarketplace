@@ -29,7 +29,12 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  const onChange = (e) => {};
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
 
   return (
     <>
@@ -68,7 +73,19 @@ const SignIn = () => {
             <Link to="/forgot-password" className="forgotPasswordLink">
               Forgot Password?
             </Link>
+
+            <div className="signInBar">
+              <p className="signInText">Sign In</p>
+              <button className="signInButton">
+                <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
+              </button>
+            </div>
           </form>
+          {/* Google OAuth */}
+
+          <Link to="/sign-up" className="registerLink">
+            Not Registered? Sign Up!
+          </Link>
         </main>
       </div>
     </>
