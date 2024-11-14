@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Explore from './pages/Explore';
 import Offers from './pages/Offers';
 import SignIn from './pages/SignIn';
@@ -20,6 +21,8 @@ const App = () => {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
+        {/*Navigation Bar*/}
+        <Navbar />
       </Router>
     </>
   );

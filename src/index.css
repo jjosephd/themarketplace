@@ -24,6 +24,8 @@ button {
   outline: none;
   border: none;
 }
+ul {
+}
 
 .input,
 .passwordInput,
@@ -118,7 +120,7 @@ button {
   align-items: center;
 }
 
-.pageContainer{
+.pageContainer {
   margin-bottom: 10rem;
 }
 
