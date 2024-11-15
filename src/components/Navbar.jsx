@@ -48,7 +48,7 @@ const Navbar = () => {
               }}
             >
               <OfferIcon fill="" width="36px" height="36px" />
-              <p>Explore</p>
+              <p>Offers</p>
             </NavLink>
           </li>
           <li className="navbarListItem">
