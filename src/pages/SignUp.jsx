@@ -23,6 +23,7 @@ import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -63,6 +64,15 @@ const SignUp = () => {
         displayName: name,
       });
 
+      // Create a copy of the formData object
+      const formDataCopy = { ...formData };
+
+      // Remove the password field from the formDataCopy object
+      delete formDataCopy.password;
+      // Add the timestamp field to the formDataCopy object
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, 'users', user.uid), formDataCopy);
       // Redirect the user to the homepage
       navigate('/');
     } catch (error) {
