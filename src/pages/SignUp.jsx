@@ -44,6 +44,12 @@ const SignUp = () => {
     }));
   };
 
+  /**
+   * Handles the form submission by creating a new user with email and password,
+   * updating the user's display name, creating a new document in the 'users' collection
+   * with the user's data, and redirecting the user to the homepage.
+   * @param {Event} e - The form submission event.
+   */
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,10 +75,13 @@ const SignUp = () => {
 
       // Remove the password field from the formDataCopy object
       delete formDataCopy.password;
+
       // Add the timestamp field to the formDataCopy object
       formDataCopy.timestamp = serverTimestamp();
 
+      // Create a new document in the 'users' collection with the user's data
       await setDoc(doc(db, 'users', user.uid), formDataCopy);
+
       // Redirect the user to the homepage
       navigate('/');
     } catch (error) {
