@@ -14,14 +14,40 @@
 import React from 'react';
 import { getAuth } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const auth = getAuth();
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    setUser(auth.currentUser);
+  const [form, formData] = useState({
+    name: auth.currentUser.displayName,
+    email: auth.currentUser.email,
   });
-  return user ? <h1>{user.displayName}</h1> : <h1>Not Found</h1>;
+
+  const navigate = useNavigate();
+  const onLogout = () => {
+    auth.signOut();
+    navigate('/');
+    toast.success('Logout Successful!', {
+      position: 'top-center',
+      autoClose: 2500,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  return (
+    <div className="profile">
+      <header className="profileHeader">
+        <p className="pageHeader">My Profile</p>
+        <button className="logOut" onClick={onLogout}>
+          Logout
+        </button>
+      </header>
+    </div>
+  );
 };
 
 export default Profile;
