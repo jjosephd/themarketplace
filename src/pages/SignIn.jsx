@@ -49,10 +49,23 @@ const SignIn = () => {
         password
       );
       if (userCredential.user) {
+        toast.success('Login Successful!', {
+          position: 'top-center',
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          progress: undefined,
+        });
         navigate('/');
       }
     } catch (error) {
-      toast.error('Bad User Credentials');
+      toast.error('Bad User Credentials!', {
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        progress: undefined,
+      });
     }
   };
 
