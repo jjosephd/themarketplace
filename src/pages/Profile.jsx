@@ -12,9 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import React from 'react';
+import { getAuth } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 
 const Profile = () => {
-  return <h1>Profile</h1>;
+  const auth = getAuth();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    setUser(auth.currentUser);
+  });
+  return user ? <h1>{user.displayName}</h1> : <h1>Not Found</h1>;
 };
 
 export default Profile;
