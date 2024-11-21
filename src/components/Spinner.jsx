@@ -12,16 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStatus } from '../hooks/useAuthStatus';
-import Spinner from './Spinner';
 
-const PrivateRoutes = () => {
-  const { loggedIn, checkingStatus } = useAuthStatus();
-  if (checkingStatus) {
-    return <Spinner />;
-  }
-  return loggedIn ? <Outlet /> : <Navigate to="/signin" />;
+const Spinner = () => {
+  return (
+    <div className="loadingSpinnerContainer">
+      <div className="loadingSpinner"></div>
+    </div>
+  );
 };
 
-export default PrivateRoutes;
+export default Spinner;
