@@ -11,16 +11,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStatus } from '../hooks/useAuthStatus';
 
-const PrivateRoutes = () => {
-  const { loggedIn, checkingStatus } = useAuthStatus();
-  if (checkingStatus) {
-    return <h2>Loading...</h2>;
-  }
-  return loggedIn ? <Outlet /> : <Navigate to="/signin" />;
+import { useEffect, useState } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+export const useAuthStatus = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [checkingStatus, setCheckingStatus] = useState(true);
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedIn(true);
+      }
+      setCheckingStatus(false);
+    });
+  });
+  return { loggedIn, checkingStatus };
 };
-
-export default PrivateRoutes;
