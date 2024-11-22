@@ -19,6 +19,7 @@ import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import OAuth from '../components/OAuth';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -115,9 +116,11 @@ const SignIn = () => {
               </button>
             </div>
           </form>
-          {/* Google OAuth */}
 
-          <Link to="/sign-up" className="registerLink">
+          {/* Google OAuth */}
+          <OAuth />
+
+          <Link to="/signup" className="registerLink">
             Not Registered? Sign Up!
           </Link>
         </main>

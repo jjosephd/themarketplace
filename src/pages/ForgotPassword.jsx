@@ -21,12 +21,30 @@ import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 
 import { ReactComponent as GoogleIcon } from '../assets/svg/googleIcon.svg';
 
+/**
+ * ForgotPassword Component
+ * @returns {JSX.Element}
+ * @description
+ * This component is used to reset the password of an existing user.
+ */
 const ForgotPassword = () => {
+  /**
+   * State for the email input
+   * @type {string}
+   */
   const [email, setEmail] = useState('');
 
+  /**
+   * Handle the change of the email input
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The change event
+   */
   const onChange = (e) => {
     setEmail(e.target.value);
   };
+  /**
+   * Handle the submission of the form
+   * @param {React.FormEvent<HTMLFormElement>} e - The form event
+   */
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
